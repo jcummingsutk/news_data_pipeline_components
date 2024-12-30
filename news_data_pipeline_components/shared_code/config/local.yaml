@@ -1,0 +1,4 @@
+sources:
+  bbc_world:
+    name: "bbc world"
+    feed_url: "https://feeds.bbci.co.uk/news/world/rss.xml"
