@@ -5,7 +5,6 @@ from ..shared_code.soup_builder import SoupBuilder
 from ..shared_code.base_config import BaseConfig
 from ..shared_code.database_models import LoadedFeedEntry
 from datetime import datetime
-from zoneinfo import ZoneInfo
 
 
 def parse_bs_tag(
