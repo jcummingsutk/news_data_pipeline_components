@@ -1,4 +1,8 @@
-sources:
+mongodb:
+  db_name: db2
+  conn_str: "mongodb+srv://jcummingsutk:PASSWORD_ENV_VAR@news-cummings.alu1l.mongodb.net/DB_NAME?retryWrites=true&w=majority"
+feeds_info:
   bbc_world:
-    name: "bbc world"
-    feed_url: "https://feeds.bbci.co.uk/news/world/rss.xml"
+    source_name: bbc world
+    feed_url: "https://feeds.npr.org/1014/rss.xml"
+    datetime_format: "%a, %d %b %Y %H:%M:%S %z"
