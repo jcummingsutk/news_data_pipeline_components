@@ -9,4 +9,4 @@ class LoadedFeedEntry(mongoengine.Document):
     date = mongoengine.DateTimeField(required=True)
 
     def __str__(self):
-        return f"{self.title}, {self.date}"
+        return f"{self.title}, {self.date}, {self.source_name}"
