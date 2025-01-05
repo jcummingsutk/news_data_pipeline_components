@@ -6,3 +6,10 @@ feeds_info:
     source_name: bbc world
     feed_url: "https://feeds.npr.org/1014/rss.xml"
     datetime_format: "%a, %d %b %Y %H:%M:%S %z"
+credentials:
+  type: gcp
+  credentials-list:
+    - env_var: OPENAI_API_KEY
+      secret_name: projects/news-cummings/secrets/OPENAI_API_KEY/versions/latest
+    - env_var: MONGODB_PASS
+      secret_name: projects/news-cummings/secrets/NewsMongoDBPass/versions/latest

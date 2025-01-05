@@ -7,6 +7,8 @@ import mongoengine
 import yaml
 from dotenv import load_dotenv
 
+from .creds import get_gcp_credential_loader
+
 
 def configure_mongoengine(
     config_dict: dict,
@@ -24,10 +26,17 @@ class BaseConfig:
     feeds_info: dict
 
 
+def get_dev_config(config_dict: dict) -> BaseConfig:
+    credential_loader = get_gcp_credential_loader(config_dict=config_dict)
+    credential_loader.load_credentials()
+    configure_mongoengine(config_dict=config_dict)
+    feeds_info = config_dict["feeds_info"]
+    return BaseConfig(feeds_info)
+
+
 def get_local_config(config_dict: dict) -> BaseConfig:
-    load_dotenv(
-        os.path.join("news_data_pipeline_components", "shared_code", "creds", ".env")
-    )
+    credential_loader = get_gcp_credential_loader(config_dict=config_dict)
+    credential_loader.load_credentials()
     configure_mongoengine(config_dict=config_dict)
     feeds_info = config_dict["feeds_info"]
     return BaseConfig(feeds_info)
@@ -42,4 +51,8 @@ def get_base_config(env_type: Literal["local", "dev"]) -> BaseConfig:
     if env_type == "local":
         base_config = get_local_config(base_config_dict)
         return base_config
+    elif env_type == "dev":
+        base_config = get_dev_config(base_config_dict)
+        return base_config
+
     raise NotImplementedError(f"Unexpected environment type {env_type}")

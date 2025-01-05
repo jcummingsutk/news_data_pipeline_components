@@ -8,6 +8,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
+from ..shared_code.creds import get_gcp_credential_loader
 from .nlp_utils import ArticleSummarizer, SpacySentenceCounter
 
 
@@ -35,13 +36,20 @@ def get_summarizer():
 
 
 def get_local_config(config_dict) -> TransformConfig:
-    creds_file = os.path.join(
-        "news_data_pipeline_components",
-        "transform",
-        "creds",
-        ".env",
+    credential_loader = get_gcp_credential_loader(config_dict=config_dict)
+    credential_loader.load_credentials()
+    spacy_model_name = config_dict["sentence_counter"]["spacy_model_name"]
+    sentence_counter = SpacySentenceCounter(model_name=spacy_model_name)
+    article_summarizer = get_summarizer()
+    return TransformConfig(
+        sentence_counter=sentence_counter,
+        article_summarizer=article_summarizer,
     )
-    load_dotenv(creds_file)
+
+
+def get_dev_config(config_dict) -> TransformConfig:
+    credential_loader = get_gcp_credential_loader(config_dict=config_dict)
+    credential_loader.load_credentials()
     spacy_model_name = config_dict["sentence_counter"]["spacy_model_name"]
     sentence_counter = SpacySentenceCounter(model_name=spacy_model_name)
     article_summarizer = get_summarizer()
@@ -63,3 +71,7 @@ def get_transform_config(env_type: Literal["local", "dev"]):
     if env_type == "local":
         config = get_local_config(config_dict)
         return config
+    elif env_type == "dev":
+        config = get_dev_config(config_dict)
+        return config
+    raise NotImplementedError(f"Unexpected env_type: {env_type}")

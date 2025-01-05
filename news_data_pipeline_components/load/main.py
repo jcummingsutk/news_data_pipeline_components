@@ -19,7 +19,7 @@ def main(load_config: LoadConfig, base_config: BaseConfig):
 
 if __name__ == "__main__":
     env_type = os.getenv("ENVIRONMENT", "local")
-    load_config = get_config(env_type)
     base_config = get_base_config(env_type)
+    load_config = get_config(env_type)
 
     main(load_config=load_config, base_config=base_config)

@@ -16,4 +16,6 @@ if __name__ == "__main__":
     tranform_config = get_transform_config(env_type)
     base_config = get_base_config(env_type)
 
+    TransformedFeedEntry.objects.delete()
+
     main_transform(base_config=base_config, tranform_config=tranform_config)
