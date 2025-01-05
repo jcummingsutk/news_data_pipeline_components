@@ -24,7 +24,6 @@ def parse_bs_tag(
         description=description,
         date=date_dt,
     )
-    print(feed_entry_to_append)
 
     return feed_entry_to_append
 

@@ -23,5 +23,3 @@ if __name__ == "__main__":
     base_config = get_base_config(env_type)
 
     main(load_config=load_config, base_config=base_config)
-    first = LoadedFeedEntry.objects.first()
-    print(first)
