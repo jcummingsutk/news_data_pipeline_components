@@ -1,10 +1,11 @@
+import os
 from dataclasses import dataclass
 from typing import Literal
-from dotenv import load_dotenv
-import os
-import yaml
 from urllib.parse import quote_plus
+
 import mongoengine
+import yaml
+from dotenv import load_dotenv
 
 
 def configure_mongoengine(

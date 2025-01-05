@@ -1,10 +1,12 @@
-from .config_load import LoadConfig
+from datetime import datetime
+
 import requests
 from bs4.element import Tag
-from ..shared_code.soup_builder import SoupBuilder
+
 from ..shared_code.base_config import BaseConfig
 from ..shared_code.database_models import LoadedFeedEntry
-from datetime import datetime
+from ..shared_code.soup_builder import SoupBuilder
+from .config_load import LoadConfig
 
 
 def parse_bs_tag(

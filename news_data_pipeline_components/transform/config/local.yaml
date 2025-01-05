@@ -1,0 +1,2 @@
+sentence_counter:
+  spacy_model_name: "en_core_web_sm"

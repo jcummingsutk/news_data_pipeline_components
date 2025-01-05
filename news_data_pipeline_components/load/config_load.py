@@ -1,9 +1,11 @@
-from dataclasses import dataclass
-from ..shared_code.soup_builder import SoupBuilder
-from typing import Literal
-import yaml
 import os
+from dataclasses import dataclass
+from typing import Literal
+
+import yaml
 from dotenv import load_dotenv
+
+from ..shared_code.soup_builder import SoupBuilder
 
 
 @dataclass

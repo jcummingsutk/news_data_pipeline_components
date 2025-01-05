@@ -1,10 +1,10 @@
-from .config_load import LoadConfig, get_config
-
-from .npr_politics_load import main_npr_politics
-from .bbc_world_load import main_bbc_world
 import os
+
+from ..shared_code.base_config import BaseConfig, get_base_config
 from ..shared_code.database_models import LoadedFeedEntry
-from ..shared_code.base_config import get_base_config, BaseConfig
+from .bbc_world_load import main_bbc_world
+from .config_load import LoadConfig, get_config
+from .npr_politics_load import main_npr_politics
 
 
 def clear_load_collection():
